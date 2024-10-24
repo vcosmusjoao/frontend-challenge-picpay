@@ -1,0 +1,43 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--surface-100); /* Fundo claro baseado no tema */
+  }
+  
+  form {
+    width: 400px;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: var(--surface-card); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .p-field {
+    margin-bottom: 1.5rem;
+  }
+  
+  .login-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white; 
+    font-weight: bold;
+  }
+  
+  input[pInputText] , .login-button {
+    width: 100%;
+  }
+
+
+input{
+    width: 100%;
+
+}
+
+  
+  h3{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:white;
+    font-weight: bold;
+  }
