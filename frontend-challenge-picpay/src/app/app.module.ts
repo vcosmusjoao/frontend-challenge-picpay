@@ -21,6 +21,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { TaskFilterComponent } from './components/dashboard/task-filter/task-filter.component';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {ToolbarModule} from 'primeng/toolbar';
+import {PasswordModule} from 'primeng/password';
 
 
 
@@ -49,7 +50,8 @@ import {ToolbarModule} from 'primeng/toolbar';
     AccordionModule,
     BrowserAnimationsModule,
     RadioButtonModule,
-    ToolbarModule
+    ToolbarModule,
+    PasswordModule
   ],
   providers: [
     {
