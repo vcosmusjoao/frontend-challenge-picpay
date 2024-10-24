@@ -1,0 +1,12 @@
+.content-container {
+    padding-top: 60px; /* Tamanho do navbar */
+  }
+  
+  app-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  
