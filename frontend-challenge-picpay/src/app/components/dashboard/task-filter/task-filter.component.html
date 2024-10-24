@@ -1,16 +1,16 @@
 <p-accordion>
-    <p-accordionTab header="Filters">
+  <p-accordionTab header="Filters">
       <form [formGroup]="filtroForm">
-        <div class="p-field">
-          <label for="name">Name</label>
-          <input id="name" pInputText formControlName="name"  />
+          <div class="input-container">
+              <span class="p-float-label">
+                  <input id="float-input" type="text" pInputText formControlName="name"> 
+                  <label for="float-input">Usuario</label>
+              </span>
 
-        </div>
+          </div>
+          <button class="btn" type="button" (click)="onPesquisar()" pButton label="Search"></button>
 
-      
-        <button type="button" (click)="onPesquisar()" pButton label="Search"></button> <!-- Botão de busca -->
 
       </form>
-    </p-accordionTab>
-  </p-accordion>
-  
+  </p-accordionTab>
+</p-accordion>

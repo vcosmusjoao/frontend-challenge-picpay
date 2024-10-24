@@ -1,11 +1,11 @@
 <div class="task-grid-container">
 
-  <app-task-filter (filtersChanged)="onFiltersChanged($event)"></app-task-filter>
 
   <div class="btn">
     <button (click)="openCreateDialog()" pButton label="Criar Nova Tarefa"></button>
   </div>
   <app-task-form 
+    [titleModal]="tittleModal"
     (taskCreated)="loadTasks()" 
     (taskUpdated)="loadTasks()"
     [listLength]="tasks.length" 
@@ -15,29 +15,75 @@
     >
   </app-task-form>
 
-  <p-table [value]="filteredTasks.length ? filteredTasks : tasks" [paginator]="true" [rows]="10">
-      <ng-template pTemplate="header">
-          <tr>
-            <th>Usuario</th>
-            <th>Titulo</th>
-            <th>Valor</th>
-            <th>Data</th>
-            <th>Pago</th>
-            <th>Ações</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-task>
-          <tr>
-            <td>{{ task.name }}</td>
-            <td>{{ task.title }}</td>
-            <td>{{ task.value | currency:'USD' }}</td>
-            <td>{{ task.date | date }}</td>
-            <td>{{task.isPayed | paidUnpaid }}</td>
-            <td>
-              <button class="icn" (click)="openEditDialog(task)" pButton icon="pi pi-pencil" style="margin-right: 8px;"></button>
-              <button class="icn"(click)="deleteTask(task)" pButton icon="pi pi-trash"></button>
-            </td>
-          </tr>
-        </ng-template>
-  </p-table>
+  <p-table 
+  [value]="filteredTasks.length ? filteredTasks : tasks" 
+  [paginator]="true" 
+  [rows]="10" 
+  [sortMode]="'multiple'">
+  
+  <!-- Linha de Filtros -->
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        <input 
+          pInputText 
+          type="text" 
+          (input)="applyFilter('name', $event.target.value)" 
+          placeholder="Filtrar por Usuário" />
+      </th>
+      <th>
+        <input 
+          pInputText 
+          type="text" 
+          (input)="applyFilter('title', $event.target.value)" 
+          placeholder="Filtrar por titulo" />
+      </th>
+      <th>
+        <input 
+          pInputText 
+          type="text" 
+          (input)="applyFilter('value', $event.target.value)" 
+          placeholder="Filtrar por valor" />
+      </th>
+      <th></th>
+      <th></th>
+      <th></th> 
+    </tr>
+    <tr>
+      <th pSortableColumn="name">
+        Usuário <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="title">
+        Título <p-sortIcon field="title"></p-sortIcon>
+      </th>
+      <th pSortableColumn="value">
+        Valor <p-sortIcon field="value"></p-sortIcon>
+      </th>
+      <th pSortableColumn="date">
+        Data <p-sortIcon field="date"></p-sortIcon>
+      </th>
+      <th pSortableColumn="isPayed">
+        Pago <p-sortIcon field="isPayed"></p-sortIcon>
+      </th>
+      <th>Ações</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-task>
+    <tr>
+      <td>{{ task.name }}</td>
+      <td>{{ task.title }}</td>
+      <td>{{ task.value | currency:'USD' }}</td>
+      <td>{{ task.date | date }}</td>
+      <td>{{ task.isPayed | paidUnpaid }}</td>
+      <td>
+        <button class="icn" (click)="openEditDialog(task)" 
+                pButton icon="pi pi-pencil" style="margin-right: 8px;"></button>
+        <button class="icn" (click)="deleteTask(task)" 
+                pButton icon="pi pi-trash"></button>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
 </div>

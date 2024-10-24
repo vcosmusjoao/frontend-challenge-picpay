@@ -1,0 +1,42 @@
+<p-dialog [header]="titleModal"
+          [closable]="false" 
+          [position]="'right'" 
+          [modal]="true" 
+          [(visible)]="visible" 
+          [style]="{ width: '25rem', height: '100vh' }" 
+          [baseZIndex]="10000">
+
+          <form [formGroup]="form" (ngSubmit)="createOrUpdateAccount()">
+            <div class="p-fluid">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" pInputText formControlName="name" id="name" />
+                </div>
+    
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="text" pInputText formControlName="email" id="email" />
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <div class="p-inputgroup">
+                        <input [type]="showPassword ? 'text' : 'password'" 
+                               pInputText 
+                               formControlName="password" 
+                               id="password" />
+                        <button pButton type="button" icon="{{ showPassword ? 'pi pi-eye-slash' : 'pi pi-eye' }}" 
+                                (click)="togglePasswordVisibility()"></button>
+
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div class="buttons">
+                <p-button label="Cancel" severity="secondary" (click)="close()"></p-button>
+                <p-button label="Save"  (click)="createOrUpdateAccount()"></p-button>
+            </div>
+        </form>
+
+</p-dialog>
