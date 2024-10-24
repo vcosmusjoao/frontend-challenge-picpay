@@ -1,0 +1,53 @@
+<p-dialog [header]="titleModal"
+          [closable]="false" 
+          [position]="'right'" 
+          [modal]="true" 
+          [(visible)]="visible" 
+          [style]="{ width: '25rem', height: '100vh' }" 
+          [baseZIndex]="10000">
+
+          <form [formGroup]="form" (ngSubmit)="createOrUpdateTask()">
+            <div class="p-fluid">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" pInputText formControlName="name" id="name" />
+                </div>
+    
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input type="text" pInputText formControlName="username" id="username" />
+                </div>
+    
+                <div class="field">
+                    <label for="title">Title</label>
+                    <input type="text" pInputText formControlName="title" id="title" />
+                </div>
+    
+                <div class="field">
+                    <label for="value">Value</label>
+                    <p-inputNumber formControlName="value"></p-inputNumber>
+                </div>
+    
+                <div class="field">
+                    <label for="date">Date</label>
+                    <input type="text" pInputText formControlName="date" id="date" placeholder="YYYY-MM-DD" />
+                </div>
+    
+                <div class="field">
+                    <label for="image">Image URL</label>
+                    <input type="text" pInputText formControlName="image" id="image" />
+                </div>
+
+                <div class="field">
+                    <p-selectButton [options]="paymentOptions"  formControlName="isPayed" optionLabel="label" optionValue="value"></p-selectButton>
+                </div>
+
+            </div>
+    
+            <div class="buttons">
+                <p-button label="Cancel" severity="secondary" (click)="close()"></p-button>
+                <p-button label="Save" (click)="createOrUpdateTask()"></p-button>
+            </div>
+        </form>
+
+</p-dialog>

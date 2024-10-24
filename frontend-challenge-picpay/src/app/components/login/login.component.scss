@@ -25,19 +25,46 @@
     font-weight: bold;
   }
   
-  input[pInputText] , .login-button {
+  input[pInputText] ,p-password, .login-button {
     width: 100%;
   }
 
-
-input{
-    width: 100%;
-
-}
-
   
+  ::ng-deep p-password > div {
+    width: 100% !important;
+    display: flex;
+  }
+  
+  ::ng-deep p-password input {
+    flex: 1 1 auto;
+    width: 100% !important;
+  }
+
+
   h3{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color:white;
     font-weight: bold;
   }
+
+  .login-container {
+    display: flex;
+    flex-direction: column; /* Mantenha o layout em coluna */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--surface-100);
+}
+
+.title-container {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    margin-bottom: 1rem; 
+}
+
+.extra-info {
+    color: white; 
+    margin-top: 0.5rem; 
+    text-align: center; 
+}
