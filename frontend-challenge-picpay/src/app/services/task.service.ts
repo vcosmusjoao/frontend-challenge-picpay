@@ -14,7 +14,6 @@ export class TaskService {
   getTasks(filters?: { name?: string, isPayed?: boolean }): Observable<any> {
     const params = new HttpParams()
     .set('name',filters?.name || '')
-    .set('isPayed', filters?.isPayed !== undefined ? filters.isPayed.toString() : '');
     return this.http.get(this.apiUrl,{params });
   }
 

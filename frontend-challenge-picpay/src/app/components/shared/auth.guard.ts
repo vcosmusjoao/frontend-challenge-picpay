@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
           return true; 
         }
       }
-      this.logout(); // Chama o logout automático
+      this.logout();
       return false;
   }
 

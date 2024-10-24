@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, forwardRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,7 +9,7 @@ import {TaskListComponent } from './components/dashboard/task-list/task-list.com
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { PaidUnpaidPipe } from './components/shared/pipes/paid-unpaid.pipe';
+//import { PaidUnpaidPipe } from './components/shared/pipes/paid-unpaid.pipe';
 import { TaskFormComponent } from './components/dashboard/task-form/task-form.component';
 import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Adicione isso
@@ -28,8 +28,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserListComponent } from './components/dashboard/user-list/user-list.component';
 import { UserFormComponent } from './components/dashboard/user-form/user-form.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import {MenuItem} from 'primeng/api';
 import {MenuModule} from 'primeng/menu';
+import { PaidUnpaidPipe } from './components/shared/pipe/paid-unpaid.pipe';
 
 
 @NgModule({
@@ -38,15 +38,16 @@ import {MenuModule} from 'primeng/menu';
     LoginComponent,
     DashboardComponent,
     TaskListComponent,
-    PaidUnpaidPipe,
     TaskFormComponent,
     TaskFilterComponent,
     NavbarComponent,
     UserListComponent,
     UserFormComponent,
     LayoutComponent,
+    PaidUnpaidPipe,
   ],
   imports: [
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -59,7 +60,12 @@ import {MenuModule} from 'primeng/menu';
     SelectButtonModule,
     ToastModule,
     ProgressSpinnerModule,
-    MenuModule
+    MenuModule,
+    ButtonModule,
+    InputTextModule,
+    InputNumberModule,
+    CheckboxModule,
+    DialogModule
   ],
   providers: [
     {
@@ -69,7 +75,6 @@ import {MenuModule} from 'primeng/menu';
     },
     MessageService
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

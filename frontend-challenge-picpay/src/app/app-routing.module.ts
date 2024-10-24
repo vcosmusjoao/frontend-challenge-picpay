@@ -7,15 +7,11 @@ import { UserListComponent } from './components/dashboard/user-list/user-list.co
 import { LayoutComponent } from './components/layout/layout.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LayoutComponent,
-    children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'users', component: UserListComponent },
-    ],
-  },
-  { path: 'login', component: LoginComponent }, // Login sem navbar
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'users', component: UserListComponent,  canActivate: [AuthGuard] }, // Nova rota
+
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
