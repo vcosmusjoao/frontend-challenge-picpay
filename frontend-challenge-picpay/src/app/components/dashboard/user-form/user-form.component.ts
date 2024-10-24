@@ -1,20 +1,20 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { BehaviorSubject } from 'rxjs';
-import { Task } from 'src/app/models/task';
-import { TaskService } from 'src/app/services/task.service';
+import { Account } from 'src/app/models/account';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-task-form',
-  templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.scss'],
+  selector: 'app-user-form',
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.scss']
 })
-export class TaskFormComponent implements OnInit, OnChanges  {
+export class UserFormComponent implements OnInit, OnChanges  {
 
   task: Task;
   @Input() listLength: number;
-  @Input() taskToEdit?: Task | null = null;
+  @Input() userToEdit?: Account | null = null;
   @Input() titleModal: string;
 
 
@@ -24,8 +24,8 @@ export class TaskFormComponent implements OnInit, OnChanges  {
   disabled: boolean;
 
   @Output() valueChanged = new EventEmitter();
-  @Output() taskCreated = new EventEmitter<void>();
-  @Output() taskUpdated = new EventEmitter<void>(); 
+  @Output() userCreated = new EventEmitter<void>();
+  @Output() userUpdated = new EventEmitter<void>(); 
   
   @Input() visible: boolean = false;
   @Output() visibleChange = new EventEmitter<boolean>();
@@ -33,18 +33,17 @@ export class TaskFormComponent implements OnInit, OnChanges  {
   form!: FormGroup;
   isEdit: boolean=false;
   paymentOptions: any[];
+  showPassword: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder, 
-    private service: TaskService,
+    private service: AuthService,
     private messageService: MessageService) { 
-      
-      this.paymentOptions = [{label: 'Unpaid', value: false}, {label: 'Paid', value: true}];
 
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-      if (changes['taskToEdit'] && changes['taskToEdit'].currentValue) {
+      if (changes['userToEdit'] && changes['userToEdit'].currentValue) {
         this.isEdit = true; 
         this.filtroForm(); 
       } else {
@@ -57,46 +56,43 @@ export class TaskFormComponent implements OnInit, OnChanges  {
       this.filtroForm();
     }
   
-
+    togglePasswordVisibility(): void {
+      this.showPassword = !this.showPassword;
+    }
 
   private filtroForm(){
     this.form = this.formBuilder.group({
-      id: [this.taskToEdit ? this.taskToEdit.id : null],
-      name: [this.taskToEdit? this.taskToEdit.name: '', Validators.required],
-      username: [this.taskToEdit? this.taskToEdit.username: '', Validators.required],
-      title: [this.taskToEdit? this.taskToEdit.title: '', Validators.required],
-      value: [this.taskToEdit? this.taskToEdit.value: '', Validators.required],
-      date: [this.taskToEdit? this.taskToEdit.date: ''],
-      image: [this.taskToEdit? this.taskToEdit.image: ''],
-      isPayed: [this.taskToEdit? this.taskToEdit.isPayed: false]
+      id: [this.userToEdit ? this.userToEdit.id : null],
+      name: [this.userToEdit? this.userToEdit.name: '', Validators.required],
+      email: [this.userToEdit? this.userToEdit.email: '', Validators.email],
+      password: [this.userToEdit? this.userToEdit.password: '', Validators.required],
     });
    
   }
 
-  getObject():Task{
-    return this.form.getRawValue() as Task;
+  getObject():Account{
+    return this.form.getRawValue() as Account;
   }
 
-  createOrUpdateTask() {
-    const task = this.getObject();
-
+  createOrUpdateAccount() {
+    const user = this.getObject();
     if(this.form.valid){
-      if (this.isEdit && task.id) {
-        this.updateTask(task); 
+      if (this.isEdit && user.id) {
+        this.updateUser(user); 
       } else {
-        this.createTask(task); 
+        this.createUser(user); 
       }
     }else{
       this.showToast('error', 'Erro', 'Formulario Inválido');
     }
-   
   }
 
-   createTask(task: Task) {
-    this.service.addTask(task).subscribe(
+
+   createUser(user: Account) {
+    this.service.addAccount(user).subscribe(
       () => {
-        this.showToast('success', 'Sucesso', 'Tarefa adicionada com sucesso!');
-        this.taskCreated.emit(); 
+        this.showToast('success', 'Sucesso', 'Usuário adicionado com sucesso!');
+        this.userCreated.emit(); 
         this.close();
       },
       (error) => {
@@ -105,11 +101,11 @@ export class TaskFormComponent implements OnInit, OnChanges  {
     );
   }
 
-  updateTask(task: Task) {
-    this.service.updateTask(task).subscribe(
+  updateUser(user: Account) {
+    this.service.updateAccount(user).subscribe(
       () => {
-        this.showToast('success', 'Sucesso', 'Tarefa atualizada com sucesso!');
-        this.taskUpdated.emit(); 
+        this.showToast('success', 'Sucesso', 'Usuario atualizado com sucesso!');
+        this.userUpdated.emit(); 
         this.close();
       },
       (error) => {
