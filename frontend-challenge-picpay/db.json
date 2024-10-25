@@ -1631,16 +1631,6 @@
       "isPayed": false
     },
     {
-      "id": "169",
-      "name": "Camilla Doxeyy",
-      "username": "cdoxey4o",
-      "title": "Engineer II",
-      "value": 435.63,
-      "date": "2021-01-09T14:00:37Z",
-      "image": "https://robohash.org/doloribuslaborequi.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": "166",
       "name": "João",
       "username": "Costa",
@@ -1659,32 +1649,12 @@
       "date": "1969-12-31T00:00:00.000Z",
       "image": null,
       "isPayed": false
-    },
-    {
-      "id": "171",
-      "name": "Gabriela teste foi ",
-      "username": "gabi.com",
-      "title": "Psicologa",
-      "value": 567000,
-      "date": "2024-10-22T00:00:00.000Z",
-      "image": null,
-      "isPayed": true
-    },
-    {
-      "id": "172",
-      "name": "Wtf",
-      "username": "julia.andrade.souza",
-      "title": "Vendedora",
-      "value": 123333,
-      "date": "2024-10-19T00:00:00.000Z",
-      "image": null,
-      "isPayed": true
     }
   ],
   "account": [
     {
       "id": "0",
-      "name": "usuario",
+      "name": "usuario-atualizado",
       "email": "usuario@gmail.com",
       "password": "usuario"
     },
