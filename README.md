@@ -44,8 +44,6 @@ A aplicação estará disponível em: http://localhost:4200
     Tabela interativa onde é possível filtrar dados,ordená-los, consultar, editar, excluir e criar novas tasks.
 - Responsividade:
     Interface otimizada para desktop e dispositivos móveis.
-- Sessão :
-    Foi utilizado Local Storage para armazenar 
 - Validações:
     Foi utilizados toasts para fornecer feedback imediato em diversas situações, incluindo erros de preenchimento, confirmações de sucesso e avisos importantes. Esses toasts  melhoram a experiência do usuário e também asseguram uma interação clara e eficiente com a aplicação.
 - Sessão do usuário:
