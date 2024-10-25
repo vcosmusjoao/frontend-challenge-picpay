@@ -9,8 +9,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'users', component: UserListComponent,  canActivate: [AuthGuard] }, // Nova rota
-
+  { path: 'users', component: UserListComponent,  canActivate: [AuthGuard] }, 
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

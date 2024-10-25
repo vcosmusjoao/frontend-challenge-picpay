@@ -1,12 +1,16 @@
 .content-container {
-    padding-top: 60px; /* Tamanho do navbar */
-  }
+    display: flex;
+    flex-direction: column;
+    padding: 16px
+}
   
-  app-navbar {
+app-navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
-  }
+}
+  
+
   

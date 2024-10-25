@@ -1,0 +1,22 @@
+.p-dialog {
+    width: 100% !important;
+    max-width: 25rem;
+    height: auto !important;
+  
+    .p-fluid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+  
+      p-button {
+        flex: 1;
+      }
+    }
+  }
+  

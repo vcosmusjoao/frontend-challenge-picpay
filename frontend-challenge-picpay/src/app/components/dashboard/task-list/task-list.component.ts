@@ -16,38 +16,54 @@ export class TaskListComponent implements OnInit {
   editedTask: Task | null = null; 
   visible: boolean = false; 
 
-  constructor(private service: TaskService) {}
+  constructor(private service: TaskService, private messageService: MessageService) {}
 
   ngOnInit(): void {
    this.loadTasks();
   }
 
-  openCreateDialog() {
-    this.editedTask = null;
-    this.tittleModal = "Nova Task";
+  openDialog(task?: Task) {
+    this.editedTask = task ? { ...task } : null;
+    this.tittleModal = task ? "Editar Task" : "Nova Task";
     this.visible = true;
   }
-
-  openEditDialog(task: Task) {
-    this.editedTask = { ...task };
-    this.tittleModal= "Editar Task";
-    this.visible = true;
-  }
+  
 
   deleteTask(item: Task) {
     this.service.deleteTask(item.id).subscribe(() => {
       this.tasks = this.tasks.filter(task => task.id !== item.id);
       this.loadTasks();
+      this.showToast('success', 'Sucesso', 'Task deletada com sucesso!');
+    },
+    (error) => {
+      this.showToast('error', 'Erro', 'Falha ao excluir tarefa');
     });
   }
 
+  handleTaskChange() {
+    this.loadTasks();
+    this.visible = false;
+  }
+
   loadTasks() {
-    this.service.getTasks().subscribe((tasks) => {
-      this.tasks = tasks.sort((a,b)=>{
+    this.service.getTasks().subscribe(
+      (tasks) => {
+        this.tasks = tasks;
+        this.sortTasks();
         this.filteredTasks = [...this.tasks];
-        return b.id - a.id;
-      });
-    });
+      },
+      (error) => {
+        this.showToast('error', 'Erro', 'Erro ao carregar tarefas! Tente mais tarde!');
+      }
+    );
+  }
+
+  showToast(severity: string, summary: string, detail: string) {
+    this.messageService.add({ severity, summary, detail,life: 2000 });
+  }
+
+  sortTasks() {
+    this.tasks.sort((a, b) => Number(b.id) - Number(a.id));
   }
 
   showDialog() {
@@ -56,7 +72,7 @@ export class TaskListComponent implements OnInit {
 
   addTask(newTask: any) {
     this.tasks.push(newTask);
-    this.visible = false; // fecha o diálogo após a criação da tarefa
+    this.visible = false; 
   }
 
   applyFilter(field: string, value: any) {
@@ -75,11 +91,13 @@ export class TaskListComponent implements OnInit {
       this.tasks = tasks;
       this.filteredTasks = tasks.filter(task => {
         const matchesName = filters.name ? task.name.includes(filters.name) : true;
-        const matchesIsPayed = filters.isPayed !== null ? task.isPayed === filters.isPayed : true;
-        return matchesName && matchesIsPayed;
+        return matchesName;
       });
     });
   }
+  
+
+  
 
 
 }

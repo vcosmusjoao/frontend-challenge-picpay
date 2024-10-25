@@ -17,7 +17,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AccordionModule } from 'primeng/accordion';
-import { TaskFilterComponent } from './components/dashboard/task-filter/task-filter.component';
+import { UserFilterComponent } from './components/dashboard/user-filter/user-filter.component';
 import {ToolbarModule} from 'primeng/toolbar';
 import {PasswordModule} from 'primeng/password';
 import {SelectButtonModule} from 'primeng/selectbutton';
@@ -30,6 +30,7 @@ import { UserFormComponent } from './components/dashboard/user-form/user-form.co
 import { LayoutComponent } from './components/layout/layout.component';
 import {MenuModule} from 'primeng/menu';
 import { PaidUnpaidPipe } from './components/shared/pipe/paid-unpaid.pipe';
+import {InputMaskModule} from 'primeng/inputmask';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { PaidUnpaidPipe } from './components/shared/pipe/paid-unpaid.pipe';
     DashboardComponent,
     TaskListComponent,
     TaskFormComponent,
-    TaskFilterComponent,
+    UserFilterComponent,
     NavbarComponent,
     UserListComponent,
     UserFormComponent,
@@ -70,7 +71,9 @@ import { PaidUnpaidPipe } from './components/shared/pipe/paid-unpaid.pipe';
     InputTextModule,
     InputNumberModule,
     CheckboxModule,
-    DialogModule
+    DialogModule,
+    SelectButtonModule,
+    InputMaskModule
   ],
   providers: [
     {

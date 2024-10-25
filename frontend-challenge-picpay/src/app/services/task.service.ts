@@ -11,7 +11,7 @@ export class TaskService {
   private apiUrl = 'http://localhost:3030/tasks';
   constructor(private http: HttpClient) {}
 
-  getTasks(filters?: { name?: string, isPayed?: boolean }): Observable<any> {
+  getTasks(filters?: { name?: string}): Observable<any> {
     const params = new HttpParams()
     .set('name',filters?.name || '')
     return this.http.get(this.apiUrl,{params });

@@ -1,0 +1,17 @@
+<p-accordion>
+    <p-accordionTab header="Filtro">
+      <form [formGroup]="filtroForm" (ngSubmit)="onPesquisar()">
+        <div class="input-container">
+          <span class="p-float-label field">
+            <input id="float-input" type="text" pInputText formControlName="name">
+            <label for="float-input">Usuário</label>
+          </span>
+        </div>
+  
+        <div class="btn">
+          <button type="submit" pButton label="Pesquisar"></button>
+        </div>
+      </form>
+    </p-accordionTab>
+  </p-accordion>
+  

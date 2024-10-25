@@ -2,12 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-task-filter',
-  templateUrl: './task-filter.component.html',
-  styleUrls: ['./task-filter.component.scss']
+  selector: 'app-user-filter',
+  templateUrl: './user-filter.component.html',
+  styleUrls: ['./user-filter.component.scss']
 })
-export class TaskFilterComponent implements OnInit {
-  @Output() filtersChanged = new EventEmitter<{ name: string, isPayed: string }>();  // Mudei o tipo para string
+export class UserFilterComponent implements OnInit {
+  @Output() filtersChanged = new EventEmitter<{ name: string, isPayed: string }>();
 
   filtroForm: FormGroup;
   selectedValue: string = 'No';

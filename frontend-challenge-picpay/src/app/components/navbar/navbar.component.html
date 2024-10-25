@@ -5,6 +5,13 @@
 
   <div class="p-toolbar-group-right">
     <p-menu #menu [popup]="true" [model]="items"></p-menu>
-    <button class="custom-button-label" type="button" pButton icon="pi pi-list" label="Olá, {{nomeUsuarioLogado}}" (click)="menu.toggle($event)"></button>
+    <button 
+      class="custom-button-label" 
+      type="button" 
+      pButton 
+      icon="pi pi-list" 
+      label="Olá, {{nomeUsuarioLogado}}" 
+      (click)="menu.toggle($event)">
+    </button>
   </div>
 </p-toolbar>

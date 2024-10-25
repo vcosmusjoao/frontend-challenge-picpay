@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing'; // Importa o HttpClientTestingModule
 import { UserListComponent } from './user-list.component';
+import { AuthService } from 'src/app/services/auth.service'; // Adicione esta importação se o AuthService for usado aqui
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
@@ -8,7 +9,9 @@ describe('UserListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserListComponent ]
+      imports: [HttpClientTestingModule], 
+      declarations: [ UserListComponent ],
+      providers: [AuthService]
     })
     .compileComponents();
   });

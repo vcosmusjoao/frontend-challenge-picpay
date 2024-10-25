@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { UserFormComponent } from './user-form.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { UserFormComponent } from './user-form.component'; 
+import { AuthService } from 'src/app/services/auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
@@ -8,9 +10,10 @@ describe('UserFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserFormComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule, ReactiveFormsModule],
+      declarations: [UserFormComponent],
+      providers: [AuthService] 
+    }).compileComponents();
   });
 
   beforeEach(() => {

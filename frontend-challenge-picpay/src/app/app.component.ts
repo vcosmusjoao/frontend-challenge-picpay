@@ -14,7 +14,7 @@ export class AppComponent {
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.showNavbar = event.url !== '/login'; // Oculta navbar no login
+        this.showNavbar = event.url !== '/login';
       }
     });
   }}
