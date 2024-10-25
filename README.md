@@ -47,7 +47,7 @@ A aplicação estará disponível em: http://localhost:4200
 - Validações:
     Foi utilizados toasts para fornecer feedback imediato em diversas situações, incluindo erros de preenchimento, confirmações de sucesso e avisos importantes. Esses toasts  melhoram a experiência do usuário e também asseguram uma interação clara e eficiente com a aplicação.
 - Sessão do usuário:
-  Foi implementando via Local Storage um tempo de 5 minutos por sessão, onde o usuário é avisado 30 segundos antes e após isso a aplicaçãor retorna pro login, trazendo um pouco mais da realidade de sistemas mais robustos que contam com validação de tempo de sessão. Além disso o Local Storage também foi utilizado para guardar as informações do usuário logado.
+  Foi implementando via Local Storage um tempo de 5 minutos por sessão, onde o usuário é avisado 30 segundos antes e após isso a aplicação retorna para a tela de login, trazendo um pouco mais da realidade de sistemas mais robustos que contam com validação de tempo de sessão. Além disso o Local Storage também foi utilizado para guardar as informações do usuário logado.
 
   
 ✅ Boas práticas seguidas
