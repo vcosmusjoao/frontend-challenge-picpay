@@ -13,18 +13,20 @@ export class AuthService {
   
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?email=${email}`).pipe(
-      map((users) => {
-        const user = users.find((u: any) => u.email === email && u.password === password);
+  login(email: string, password: string): Observable<boolean> {
+    return this.http.get<Account[]>(`${this.apiUrl}?email=${email}`).pipe(
+      map(users => {
+        const user = users.find(u => u.email === email && u.password === password);
         if (user) {
           localStorage.setItem('loggedUser', JSON.stringify(user)); 
           return true;
         }
         return false;
-      })
+      }),
+      catchError(() => of(false)) 
     );
   }
+
 
   logout() {
     localStorage.removeItem('loggedUser'); 
@@ -38,16 +40,14 @@ export class AuthService {
     return this.http.get(this.apiUrl,{params });
   }
 
-  addAccount(account: any): Observable<any> {
+  addAccount(account: Account): Observable<Account | null> {
     return this.getLastId().pipe(
       switchMap(lastId => {
         const newId = lastId + 1;
         const newAccount = { ...account, id: newId.toString() };
-        return this.http.post(this.apiUrl, newAccount);
+        return this.http.post<Account>(this.apiUrl, newAccount);
       }),
-      catchError(err => {
-        return of(null); 
-      })
+      catchError(() => of(null)) 
     );
   }
 
@@ -60,13 +60,13 @@ export class AuthService {
     return this.http.put(`${this.apiUrl}/${account.id}`, account);
   }
 
-  getLastId():Observable<number> {
+  getLastId(): Observable<number> {
     return this.http.get<Account[]>(this.apiUrl).pipe(
-      map(accounts=>{
-        const ids = accounts.map(account=> parseInt(account.id,10));
-        return Math.max(...ids,0);
+      map(accounts => {
+        const ids = accounts.map(account => parseInt(account.id, 10));
+        return Math.max(...ids, 0);
       }),
-      catchError(()=>of(0))
+      catchError(() => of(0)) 
     );
   }
   

@@ -13,7 +13,6 @@ import { TaskService } from 'src/app/services/task.service';
 export class TaskFormComponent implements OnInit, OnChanges  {
 
   task: Task;
-  @Input() listLength: number;
   @Input() taskToEdit?: Task | null = null;
   @Input() titleModal: string;
 

@@ -22,17 +22,12 @@ export class TaskListComponent implements OnInit {
    this.loadTasks();
   }
 
-  openCreateDialog() {
-    this.editedTask = null;
-    this.tittleModal = "Nova Task";
+  openDialog(task?: Task) {
+    this.editedTask = task ? { ...task } : null;
+    this.tittleModal = task ? "Editar Task" : "Nova Task";
     this.visible = true;
   }
-
-  openEditDialog(task: Task) {
-    this.editedTask = { ...task };
-    this.tittleModal= "Editar Task";
-    this.visible = true;
-  }
+  
 
   deleteTask(item: Task) {
     this.service.deleteTask(item.id).subscribe(() => {
@@ -77,7 +72,7 @@ export class TaskListComponent implements OnInit {
 
   addTask(newTask: any) {
     this.tasks.push(newTask);
-    this.visible = false; // fecha o diálogo após a criação da tarefa
+    this.visible = false; 
   }
 
   applyFilter(field: string, value: any) {
@@ -96,8 +91,7 @@ export class TaskListComponent implements OnInit {
       this.tasks = tasks;
       this.filteredTasks = tasks.filter(task => {
         const matchesName = filters.name ? task.name.includes(filters.name) : true;
-        const matchesIsPayed = filters.isPayed !== null ? task.isPayed === filters.isPayed : true;
-        return matchesName && matchesIsPayed;
+        return matchesName;
       });
     });
   }

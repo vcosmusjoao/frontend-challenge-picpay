@@ -1693,12 +1693,6 @@
       "name": "isabel",
       "email": "joaodevcosta@gmail.com",
       "password": "teste"
-    },
-    {
-      "id": "2",
-      "name": "joao",
-      "email": "joao@gmail.com",
-      "password": "teste"
     }
   ]
 }

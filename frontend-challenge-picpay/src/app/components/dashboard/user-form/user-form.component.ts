@@ -12,11 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserFormComponent implements OnInit, OnChanges  {
 
-  task: Task;
-  @Input() listLength: number;
   @Input() userToEdit?: Account | null = null;
   @Input() titleModal: string;
-
 
   onChange: any;
   onTouched: any;
@@ -41,14 +38,10 @@ export class UserFormComponent implements OnInit, OnChanges  {
     private messageService: MessageService) { 
 
     }
-
     ngOnChanges(changes: SimpleChanges): void {
-      if (changes['userToEdit'] && changes['userToEdit'].currentValue) {
-        this.isEdit = true; 
+      if (changes['userToEdit']) {
+        this.isEdit = !!this.userToEdit;
         this.filtroForm(); 
-      } else {
-        this.isEdit = false; 
-        this.limparForm(); 
       }
     }
 
@@ -64,7 +57,7 @@ export class UserFormComponent implements OnInit, OnChanges  {
     this.form = this.formBuilder.group({
       id: [this.userToEdit ? this.userToEdit.id : null],
       name: [this.userToEdit? this.userToEdit.name: '', Validators.required],
-      email: [this.userToEdit? this.userToEdit.email: '', Validators.email],
+      email: [this.userToEdit ? this.userToEdit.email : '', [Validators.required, Validators.email]],
       password: [this.userToEdit? this.userToEdit.password: '', Validators.required],
     });
    
@@ -88,7 +81,7 @@ export class UserFormComponent implements OnInit, OnChanges  {
   }
 
 
-   createUser(user: Account) {
+  createUser(user: Account) {
     this.service.addAccount(user).subscribe(
       () => {
         this.showToast('success', 'Sucesso', 'Usuário adicionado com sucesso!');
@@ -96,7 +89,7 @@ export class UserFormComponent implements OnInit, OnChanges  {
         this.close();
       },
       (error) => {
-        this.close();
+        this.showToast('error', 'Erro', 'Não foi possível adicionar o usuário.');
       }
     );
   }
