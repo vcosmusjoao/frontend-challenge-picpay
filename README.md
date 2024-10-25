@@ -63,8 +63,9 @@ A aplicação estará disponível em: http://localhost:4200
 - PrimeNG: Componentes visuais prontos para Angular.
 - RxJS: Manipulação de fluxos assíncronos.
 - Angular Forms: Gerenciamento de formulários reativos.
-- 
-[Descrição da imagem](URL_da_imagem)
+
+✅ Evidências das telas e operações
+![GIF](https://github.com/vcosmusjoao/frontend-challenge-picpay/blob/master/steps_challenge.gif?raw=true)
 
 
 
