@@ -80,7 +80,6 @@ export class TaskListComponent implements OnInit {
       const matchesName = field === 'name' ? task.name.includes(value) : true;
       const matchesTitle = field=== 'title'? task.title.includes(value):true;
       const matchesValue = field === 'value' ? task.value.toString().includes(value) : true;
-      // const matchesDate = field === 'date' ? (task.date?.toDateString() === value?.toDateString()) : true;
       const matchesIsPayed = field === 'isPayed' ? (value === null || task.isPayed === value) : true;
       return matchesName && matchesTitle && matchesValue  && matchesIsPayed;
     });
