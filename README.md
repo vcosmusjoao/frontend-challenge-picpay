@@ -41,15 +41,24 @@ A aplicação estará disponível em: http://localhost:4200
 - Gerenciador de usuários
    Tela para consulta, edição, exclusão e criação de novos usuários.
 - Dashboard em Grid com Filtros Dinâmicos:
-    Tabela interativa onde é possível filtrar dados, consultar, editar, excluir e criar novas tasks.
+    Tabela interativa onde é possível filtrar dados,ordená-los, consultar, editar, excluir e criar novas tasks.
 - Responsividade:
     Interface otimizada para desktop e dispositivos móveis.
+- Sessão :
+    Foi utilizado Local Storage para armazenar 
+- Validações:
+    Foi utilizados toasts para fornecer feedback imediato em diversas situações, incluindo erros de preenchimento, confirmações de sucesso e avisos importantes. Esses toasts  melhoram a experiência do usuário e também asseguram uma interação clara e eficiente com a aplicação.
+- Sessão do usuário:
+  Foi implementando via Local Storage um tempo de 5 minutos por sessão, onde o usuário é avisado 30 segundos antes e após isso a aplicaçãor retorna pro login, trazendo um pouco mais da realidade de sistemas mais robustos que contam com validação de tempo de sessão. Além disso o Local Storage também foi utilizado para guardar as informações do usuário logado.
 
+  
 ✅ Boas práticas seguidas
 - Commits Semânticos: Os commits seguem uma estrutura clara e descritiva.
 - Modularização: Componentes reutilizáveis para facilitar a manutenção.
 - Uso de PrimeNG: Biblioteca rica de componentes para interfaces modernas.
 - Responsividade: A aplicação é adaptada para diferentes tamanhos de tela com utilização do Flex-box.
+
+
 
 🔄 Rotas da Aplicação
 | Rotas      | Descrição
