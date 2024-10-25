@@ -51,7 +51,6 @@ A aplicação estará disponível em: http://localhost:4200
 
   
 ✅ Boas práticas seguidas
-- Commits Semânticos: Os commits seguem uma estrutura clara e descritiva.
 - Modularização: Componentes reutilizáveis para facilitar a manutenção.
 - Uso de PrimeNG: Biblioteca rica de componentes para interfaces modernas.
 - Responsividade: A aplicação é adaptada para diferentes tamanhos de tela com utilização do Flex-box.
