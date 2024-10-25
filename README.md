@@ -7,7 +7,7 @@ Este projeto foi desenvolvido como parte do processo seletivo da PicPay para a p
 - PrimeNG: 13.1.x
 - RxJS: 7.5.x
 - TypeScript: 4.6.x
-- Node.js: 12.x ou superior
+- Node.js: 20.x ou superior
 
 🚀 Como rodar o projeto
 
