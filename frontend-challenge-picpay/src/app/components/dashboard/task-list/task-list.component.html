@@ -6,8 +6,8 @@
   </div>
   <app-task-form
   [titleModal]="tittleModal"
-  (taskCreated)="onTaskCreated()"
-  (taskUpdated)="onTaskUpdated()"
+  (taskCreated)="handleTaskChange()"
+  (taskUpdated)="handleTaskChange()"
   [listLength]="tasks.length"
   [(visible)]="visible"
   [taskToEdit]="editedTask"

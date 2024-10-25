@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const loginData = localStorage.getItem('loginData');
-    console.log('Verificando loginData:', loginData);
     if (loginData) {
       const { timestamp } = JSON.parse(loginData);
       const currentTime = new Date().getTime();

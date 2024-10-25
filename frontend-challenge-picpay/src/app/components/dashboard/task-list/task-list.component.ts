@@ -16,7 +16,7 @@ export class TaskListComponent implements OnInit {
   editedTask: Task | null = null; 
   visible: boolean = false; 
 
-  constructor(private service: TaskService) {}
+  constructor(private service: TaskService, private messageService: MessageService) {}
 
   ngOnInit(): void {
    this.loadTasks();
@@ -38,26 +38,37 @@ export class TaskListComponent implements OnInit {
     this.service.deleteTask(item.id).subscribe(() => {
       this.tasks = this.tasks.filter(task => task.id !== item.id);
       this.loadTasks();
+      this.showToast('success', 'Sucesso', 'Task deletada com sucesso!');
+    },
+    (error) => {
+      this.showToast('error', 'Erro', 'Falha ao excluir tarefa');
     });
   }
 
-  onTaskCreated(){
+  handleTaskChange() {
     this.loadTasks();
-    this.visible = false
-  }
-  
-  onTaskUpdated(){
-    this.loadTasks();
-    this.visible = false; 
+    this.visible = false;
   }
 
   loadTasks() {
-    this.service.getTasks().subscribe((tasks) => {
-      this.tasks = tasks.sort((a,b)=>{
+    this.service.getTasks().subscribe(
+      (tasks) => {
+        this.tasks = tasks;
+        this.sortTasks();
         this.filteredTasks = [...this.tasks];
-        return b.id - a.id;
-      });
-    });
+      },
+      (error) => {
+        this.showToast('error', 'Erro', 'Erro ao carregar tarefas! Tente mais tarde!');
+      }
+    );
+  }
+
+  showToast(severity: string, summary: string, detail: string) {
+    this.messageService.add({ severity, summary, detail,life: 2000 });
+  }
+
+  sortTasks() {
+    this.tasks.sort((a, b) => Number(b.id) - Number(a.id));
   }
 
   showDialog() {
