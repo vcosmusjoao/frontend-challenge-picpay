@@ -38,7 +38,7 @@ A aplicação estará disponível em: http://localhost:4200
 🔍 Funcionalidades
 - Login:
   Tela para realizar o login
-- Gerenciador de usuários
+- Gerenciador de usuários:
    Tela para consulta, edição, exclusão e criação de novos usuários.
 - Dashboard em Grid com Filtros Dinâmicos:
     Tabela interativa onde é possível filtrar dados,ordená-los, consultar, editar, excluir e criar novas tasks.
