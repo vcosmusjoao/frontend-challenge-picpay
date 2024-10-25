@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Account } from 'src/app/models/account';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,18 +12,22 @@ export class UserListComponent implements OnInit {
 
   users:Account [] = [];
   filteredUsers: Account[] = [];
-
   tittleModal = "";
-
   editedAccount: Account | null = null; 
   visible: boolean = false; 
-  constructor(private service: AuthService) { }
+  currentUser: Account | null = null; // Adicione isso para armazenar o usuário logado
+  constructor(private service: AuthService,  private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.loadTasks();
+    this.loadAccounts();
+    const loggedUser = localStorage.getItem('loggedUser');
+    if (loggedUser) {
+      this.currentUser = JSON.parse(loggedUser);
+    }
+    
   }
 
-  loadTasks() {
+  loadAccounts() {
     this.service.getAccounts().subscribe((users) => {
       this.users = users.sort((a,b)=>{
         return b.id - a.id;
@@ -59,9 +64,13 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(item: Account) {
+    if (this.currentUser && item.id === this.currentUser.id) {
+      this.showToast('warn', 'Atenção', 'Você não pode excluir seu próprio usuário.');
+      return;
+    }
     this.service.deleteAccount(item.id).subscribe(() => {
       this.users = this.users.filter(task => task.id !== item.id);
-      this.loadTasks();
+      this.loadAccounts();
     });
   }
 
@@ -71,6 +80,10 @@ export class UserListComponent implements OnInit {
     }else{
       return '';
     }
+  }
+
+  showToast(severity: string, summary: string, detail: string) {
+    this.messageService.add({ severity, summary, detail,life: 2000 });
   }
 
 }

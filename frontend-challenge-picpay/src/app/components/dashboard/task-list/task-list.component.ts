@@ -41,6 +41,16 @@ export class TaskListComponent implements OnInit {
     });
   }
 
+  onTaskCreated(){
+    this.loadTasks();
+    this.visible = false
+  }
+  
+  onTaskUpdated(){
+    this.loadTasks();
+    this.visible = false; 
+  }
+
   loadTasks() {
     this.service.getTasks().subscribe((tasks) => {
       this.tasks = tasks.sort((a,b)=>{
@@ -80,6 +90,9 @@ export class TaskListComponent implements OnInit {
       });
     });
   }
+  
+
+  
 
 
 }

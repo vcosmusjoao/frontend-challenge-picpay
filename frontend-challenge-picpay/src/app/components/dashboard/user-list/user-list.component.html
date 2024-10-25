@@ -1,14 +1,14 @@
 <div class="task-grid-container">
 
-  <app-task-filter (filtersChanged)="onFiltersChanged($event)"></app-task-filter>
+  <app-user-filter (filtersChanged)="onFiltersChanged($event)"></app-user-filter>
 
     <div class="btn">
       <button (click)="openCreateDialog()" pButton label="Criar Novo Usuario"></button>
     </div>
     <app-user-form 
       [titleModal]="tittleModal"
-      (userCreated)="loadTasks()" 
-      (userUpdated)="loadTasks()"
+      (userCreated)="loadAccounts()" 
+      (userUpdated)="loadAccounts()"
       [listLength]="users.length" 
       [(visible)]="visible" 
       (userCreated)="addUser($event)"
@@ -19,9 +19,9 @@
     <p-table [value]="users" [paginator]="true" [rows]="10">
         <ng-template pTemplate="header">
             <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Password</th>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Senha</th>
               <th>Ações</th>
 
             </tr>
@@ -30,7 +30,7 @@
             <tr>
               <td>{{ user.name }}</td>
               <td>{{ user.email }}</td>
-              <td>{{ maskPassword(user.password) }}</td> <!-- Função para mascarar senha -->
+              <td>{{ maskPassword(user.password) }}</td>
               <td>
                 <button class="icn" (click)="openEditDialog(user)" pButton icon="pi pi-pencil" style="margin-right: 8px;"></button>
                 <button class="icn"(click)="deleteUser(user)" pButton icon="pi pi-trash"></button>

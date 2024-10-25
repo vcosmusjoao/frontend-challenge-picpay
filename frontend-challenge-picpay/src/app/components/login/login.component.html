@@ -3,10 +3,13 @@
   <h3>Carregando...</h3>
 </div>
 
-<div class="login-container">
+<div class="login-container" *ngIf="!isLoading">
   <h1 class="login-title">Bem-vindo pequeno padawan</h1>   <br />
+  <span class="extra-info">Esse projeto foi realizado pelo desenvolvedor João Victor Costa Santos para o desafio de front-end da PicPay.</span>
+  <span class="">Antes de adicionar um usuário, você pode logar com o usuário adm.</span>
+  <span class="">Senha:  <b>usuario</b></span>
+  
   <div>
-    
   </div>
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
     

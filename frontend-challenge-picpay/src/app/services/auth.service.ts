@@ -18,7 +18,7 @@ export class AuthService {
       map((users) => {
         const user = users.find((u: any) => u.email === email && u.password === password);
         if (user) {
-          localStorage.setItem('loggedUser', JSON.stringify(user)); // Salva o usuário logado
+          localStorage.setItem('loggedUser', JSON.stringify(user)); 
           return true;
         }
         return false;
@@ -46,8 +46,7 @@ export class AuthService {
         return this.http.post(this.apiUrl, newAccount);
       }),
       catchError(err => {
-        console.error('Error adding account:', err);
-        return of(null); // Trate o erro conforme necessário
+        return of(null); 
       })
     );
   }

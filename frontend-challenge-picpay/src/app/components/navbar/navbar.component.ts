@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
     this.items = [
-      {label:'Consultar Usuários', icon:'pi pi-users', command:()=> this.router.navigate(['/users'])},
+      {label:'Consultar Usuários', icon:'pi pi-users', command:()=> this.navigate('/users') },
       {label:'Sair', icon:'pi pi-sign-out', command: () => this.onLogout()
     }
 
@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     const user = localStorage.getItem('loggedUser');
     if (user) {
-      this.nomeUsuarioLogado = JSON.parse(user).name; // Exibe o nome do usuário
+      this.nomeUsuarioLogado = JSON.parse(user).name; 
     }
   }
 
@@ -34,4 +34,9 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
   }
 
+  navigate(route: string) {
+    const loginData = { timestamp: new Date().getTime() };
+    localStorage.setItem('loginData', JSON.stringify(loginData));
+    this.router.navigate([route]);
+  }
 }

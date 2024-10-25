@@ -39,7 +39,7 @@ export class TaskFormComponent implements OnInit, OnChanges  {
     private service: TaskService,
     private messageService: MessageService) { 
       
-      this.paymentOptions = [{label: 'Unpaid', value: false}, {label: 'Paid', value: true}];
+      this.paymentOptions = [{label: 'Não Pago', value: false}, {label: 'Pago', value: true}];
 
     }
 
@@ -66,7 +66,7 @@ export class TaskFormComponent implements OnInit, OnChanges  {
       username: [this.taskToEdit? this.taskToEdit.username: '', Validators.required],
       title: [this.taskToEdit? this.taskToEdit.title: '', Validators.required],
       value: [this.taskToEdit? this.taskToEdit.value: '', Validators.required],
-      date: [this.taskToEdit? this.taskToEdit.date: ''],
+      date: [this.taskToEdit ? this.formatDate(this.taskToEdit.date) : ''],
       image: [this.taskToEdit? this.taskToEdit.image: ''],
       isPayed: [this.taskToEdit? this.taskToEdit.isPayed: false]
     });
@@ -81,6 +81,7 @@ export class TaskFormComponent implements OnInit, OnChanges  {
     const task = this.getObject();
 
     if(this.form.valid){
+      task.date = this.convertToISODate(task.date);
       if (this.isEdit && task.id) {
         this.updateTask(task); 
       } else {
@@ -121,6 +122,20 @@ export class TaskFormComponent implements OnInit, OnChanges  {
   showToast(severity: string, summary: string, detail: string) {
     this.messageService.add({ severity, summary, detail,life: 2000 });
   }
+
+  private convertToISODate(date: string): string {
+    const dateParts = date.split('/');
+    return new Date(`${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`).toISOString();
+  }
+
+  private formatDate(date: string): string {
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0'); 
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+
 
   limparForm(){
     if (this.form) {

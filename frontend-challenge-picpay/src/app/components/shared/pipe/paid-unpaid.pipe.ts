@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PaidUnpaidPipe implements PipeTransform {
   
   transform(value: boolean): string {
-    return value?'Paid':'Unpaid';
+    return value?'Pago':'Não Pago';
   }
 
 }

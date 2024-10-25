@@ -9,32 +9,37 @@
           <form [formGroup]="form" (ngSubmit)="createOrUpdateTask()">
             <div class="p-fluid">
                 <div class="field">
-                    <label for="name">Name</label>
+                    <label for="name">Nome</label>
                     <input type="text" pInputText formControlName="name" id="name" />
                 </div>
     
                 <div class="field">
-                    <label for="username">Username</label>
+                    <label for="username">Usuário</label>
                     <input type="text" pInputText formControlName="username" id="username" />
                 </div>
     
                 <div class="field">
-                    <label for="title">Title</label>
+                    <label for="title">Titulo</label>
                     <input type="text" pInputText formControlName="title" id="title" />
                 </div>
     
                 <div class="field">
-                    <label for="value">Value</label>
+                    <label for="value">Valor</label>
                     <p-inputNumber formControlName="value"></p-inputNumber>
                 </div>
     
                 <div class="field">
-                    <label for="date">Date</label>
-                    <input type="text" pInputText formControlName="date" id="date" placeholder="YYYY-MM-DD" />
+                    <label for="date">Data</label>
+                    <p-inputMask 
+                        formControlName="date" 
+                        id="date" placeholder="99/99/9999" 
+                        mask="99/99/9999" 
+                        slotChar="mm/dd/YYYY">
+                    </p-inputMask>
                 </div>
     
                 <div class="field">
-                    <label for="image">Image URL</label>
+                    <label for="image">URL da Imagem</label>
                     <input type="text" pInputText formControlName="image" id="image" />
                 </div>
 
