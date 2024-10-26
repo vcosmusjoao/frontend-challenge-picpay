@@ -40,7 +40,7 @@ cd frontend-challenge-picpay
 npm install
 ```
 ⚠️Possível erro de dependências:
-Se você encontrar erros relacionados dependencies, talvez seja necessário utilizar a flag --legacy-peer-deps :
+Se você encontrar erros relacionados a dependências, talvez seja necessário utilizar a flag --legacy-peer-deps :
 ```javascript
 npm install --legacy-peer-deps  
 ```
