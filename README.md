@@ -20,6 +20,16 @@ npm install -g @angular/cli@13.3.11
 
 
 # Passo a passo para rodar localmente
+
+- Instalar o json-server para simulação do back-end:
+```javascript
+npm install -g json-server  
+```
+- Inicie o json-server:
+  Na raiz do projeto, execute:
+```javascript
+json-server --watch db.json --port 3030  
+```
 - Clone o repositório:
 ```javascript
 git clone https://github.com/vcosmusjoao/frontend-challenge-picpay/
@@ -29,6 +39,13 @@ cd frontend-challenge-picpay
 ```javascript
 npm install
 ```
+⚠️Possível erro de dependências:
+Se você encontrar erros relacionados dependencies, talvez seja necessário utilizar a flag --legacy-peer-deps :
+```javascript
+npm install --legacy-peer-deps  
+```
+
+
 - Inicie o servidor de desenvolvimento:
 ```javascript
 ng serve
